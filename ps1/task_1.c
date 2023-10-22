@@ -8,7 +8,8 @@
 #define BP beepers_present()
 #define LIB left_is_blocked()
 #define LIC left_is_clear()
- 
+#define NFW not_facing_west()
+
 void walk();
 void turn_right();
 void walk_back();
@@ -23,6 +24,9 @@ int main(){
     walk();
     pick_beeper();
     walk_back();
+    while(NFW){
+	turn_left();
+    }
 
     turn_off();
 
