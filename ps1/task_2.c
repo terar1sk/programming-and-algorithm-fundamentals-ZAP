@@ -6,58 +6,63 @@
 #define RIB right_is_blocked()
 #define LIB left_is_blocked()
 #define FIC front_is_clear()
-    
+
 void walk();
 void bep();
 void walk_back();
+void st();
 void turn_right();
+void turn_back();
 
 int main(){
-     turn_on("task_2.kw");
-     set_step_delay(SPEED);
-  
-     walk();
-     bep();
-     walk_back();
+    turn_on("task_2.kw");
+    set_step_delay(SPEED);
 
-     turn_off();
-     return 0;
+    walk();
+    pick_beeper();
+    turn_back();
+    st();
+    walk_back();
+
+    turn_off();
+    return 0;
 }
-   
+
 void walk(){
     while(NBP){
-        if(FIB){
-            turn_left();
-        }
-        else{
+        while(NBP && LIB){
             step();
         }
-    }
+        if(NBP){
+            turn_left();
+            step();
+        }
+   }
 }
-   
-void bep(){
-    while(BP){
-        pick_beeper();
-    }
-}
-    
+
 void walk_back(){
-    while(NBP){
-        if(FIB && RIB){
-            turn_left();
-        }
-        else if(FIC && LIB){
+    while((FIB == 0) || (LIB == 0) || (RIB == 0)){
+        while(FIC && RIB){
             step();
         }
-        else if(FIB && LIB){
+        if(!RIB){
             turn_right();
+            step();
         }
-         if(FIB && RIB && LIB){
-            break;
-         }
     }
 }
-   
+
+void st(){
+    if(NBP){
+        step();
+    }
+}
+
+void turn_back(){
+    turn_left();
+    turn_left();
+}
+
 void turn_right(){
     set_step_delay(0);
     turn_left();
@@ -65,3 +70,4 @@ void turn_right(){
     turn_left();
     set_step_delay(SPEED);
 }
+
