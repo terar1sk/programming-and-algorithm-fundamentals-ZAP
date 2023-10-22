@@ -64,6 +64,11 @@ void walk_back(){
             turn_left();
             step();
         }
+	else if(FIB && RIC){
+	    turn_left();
+	    turn_left();
+	    turn_left();
+	}
     }
 }
 
