@@ -144,4 +144,3 @@ void turn_right(){
     set_step_delay(SPEED);
 }
 
-1
