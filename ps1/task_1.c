@@ -27,6 +27,7 @@ int main(){
     while(NFW){
 	turn_left();
     }
+    pick_beeper();
 
     turn_off();
 
