@@ -50,7 +50,7 @@ bool checking(){
     turn_right();
     step();
     ret();
-    if(NBP){
+    if(!NBP){
         step();
         turn_right();
         return true;
