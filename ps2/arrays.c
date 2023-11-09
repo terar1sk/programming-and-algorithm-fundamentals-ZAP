@@ -126,7 +126,7 @@ void podium(const int n, int arr[]){
     }
     else{
         arr[0] = n / 2 - 1;
-        arr[2] = n - arr[0];
-        arr[1] = arr[0] / 2;
+        arr[1] = n / 2;
+        arr[2] = n - arr[0] - arr[1];
     }
 }
