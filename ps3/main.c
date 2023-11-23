@@ -1,4 +1,5 @@
 #include "hangman.h"
+#include "morse.h"
 
 int main(){
     char secret[30];
