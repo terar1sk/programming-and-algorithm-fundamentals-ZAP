@@ -5,14 +5,12 @@ int main() {
     const int rows = 4;
     const int columns = 6;
     char field[rows][columns];
-
     generator(rows, columns, field);
-
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < columns; ++j) {
-            printf("%c | ", field[i][j]);
-        }
-        printf("\n--- --- --- --- --- ---\n");
+    for(int a = 0; a < rows; ++a){
+       for(int c = 0; c < columns; ++c){
+           printf("%c | ", field[a][c]);
+       }
+       printf("\n--- --- --- --- --- ---\n");
     }
 
     return 0;
