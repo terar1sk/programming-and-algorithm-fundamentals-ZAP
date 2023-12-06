@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 void encode_char(const char character, bool bits[8]){
     for(int a = 7;a >= 0;--a){
