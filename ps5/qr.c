@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
 void encode_char(const char character, bool bits[8]){
     for(int a = 7;a >= 0;--a){
@@ -37,21 +39,21 @@ void decode_bytes(const int rows, bool bytes[rows][8], char string[rows]){
 }
 
 void bytes_to_blocks(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
-    for(int bl = 0; bl < offset; bl++){
-        for(int rw = 0; rw < 8; rw++){
-            for(int cl = 0; cl < cols; cl++){
-                blocks[rw+(8*bl)][cl] = (cl+(cols*bl) < rows) ? bytes[cl+(cols*bl)][rw]: false;
+    for(int a = 0; a < offset; a++){
+        for(int b = 0; b < 8; b++){
+            for(int c = 0; c < cols; c++){
+                blocks[b+(8*a)][c] = (c+(cols*a) < rows)?bytes[c+(cols*a)][b]:false;
             }    
         }    
     }    
 }
 
 void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
-    for(int block = 0; block < offset; block++){
-        for(int sol = 0; sol < cols; sol++){
-            if(sol+(cols*block) < rows){
-                for(int rw = 0; rw < 8; rw++){
-                    bytes[sol+(cols*block)][rw] = blocks[rw+(8*block)][sol];
+    for(int a = 0; a < offset; a++){
+        for(int b = 0; b < cols; b++){
+            if(b+(cols*a) < rows){
+                for(int c = 0; c < 8; c++){
+                    bytes[b+(cols*a)][c] = blocks[c+(8*a)][b];
                 }
             }
             else{
