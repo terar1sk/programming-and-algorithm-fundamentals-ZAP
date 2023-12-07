@@ -36,6 +36,31 @@ void decode_bytes(const int rows, bool bytes[rows][8], char string[rows]){
     }
 }
 
+void bytes_to_blocks(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
+    for(int bl = 0; bl < offset; bl++){
+        for(int rw = 0; rw < 8; rw++){
+            for(int cl = 0; cl < cols; cl++){
+                blocks[rw+(8*bl)][cl] = (cl+(cols*bl) < rows) ? bytes[cl+(cols*bl)][rw]: false;
+            }    
+        }    
+    }    
+}
+
+void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
+    for(int block = 0; block < offset; block++){
+        for(int sol = 0; sol < cols; sol++){
+            if(sol+(cols*block) < rows){
+                for(int rw = 0; rw < 8; rw++){
+                    bytes[sol+(cols*block)][rw] = blocks[rw+(8*block)][sol];
+                }
+            }
+            else{
+                break;
+            }
+        }
+    }
+}
+
 int main(){
 
     return 0;
