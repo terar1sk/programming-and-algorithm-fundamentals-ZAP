@@ -5,39 +5,46 @@ int main(int argc, char *argv[]){
         return 1;
     }
     
-    FILE *file = fopen(argv[1], "r+");
-    if(file == NULL){
-        return 1;
-    }
-
     int con = 0;
     char word[] = "ananas";
     int ind = 0;
     
+    FILE *file = fopen(argv[1], "r");
+    if(file == NULL){
+        return 1;
+    }
+
     char ch = fgetc(file);
     while(ch != EOF){
-        if(ch == word[ind] || ch == word[ind] - 32){
+        if(ch == word[ind] || ch == word[ind]-32){
             ind++;
+        }
+        else if(ch == word[0]){
+            ind = 1;
         }
         else{
             ind = 0;
         }
-
         ch = fgetc(file);
         if(ind == 6){
             con++;
             ind = 0;
         }
     }
-
     fclose(file);
-    for(int a = 10000; a >= 1; a /= 10){
+    
+    FILE *fl = fopen(argv[1], "w");
+    for(int a = 100; a >= 1; a /= 10){
         if(con >= a){
-            printf("%d\n", con / a);
-            con -= con / a * a;
+            fputc(con/a+48, fl);
+            con -= con/a * a;
+        }
+        else if(con == 0){
+            fputc(con+48, fl);
+            break;
         }
     }
-    putchar(con + 48);
+    fclose(fl);
     
     return 0;
 }
