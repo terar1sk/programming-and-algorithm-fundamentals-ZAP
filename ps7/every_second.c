@@ -18,12 +18,15 @@ int main(int argc, char *argv[]){
 
     int ss = 0;
     int sec = 0;
+    int wc = 0;
 
     int cur;
     while((cur = fgetc(inp)) != EOF){
         if(ss){
             if(cur == ' ' || cur == '\n' || cur == '\t'){
-                sec = !sec;
+                if(++wc % 2 == 0){
+                    sec = !sec;
+                }
             }
             if(sec){
                 fputc(cur, otp);
@@ -44,7 +47,6 @@ int main(int argc, char *argv[]){
             }
             else{
                 fputc('S', otp);
-                fseek(inp, -4, SEEK_CUR);
             }
         }
         else if(cur == 'S' && ss){
@@ -61,7 +63,6 @@ int main(int argc, char *argv[]){
             }
             else{
                 fputc('S', otp);
-                fseek(inp, -3, SEEK_CUR);
             }
         }
     }
