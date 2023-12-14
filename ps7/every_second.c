@@ -9,8 +9,8 @@ int main(int argc, char *argv[]){
     int con = 0;
     int all_sec = 0;
     int sec = 0;
-    char buf[5000];
-    char text[200];
+    char buf[50];
+    char text[5000];
     int tcon = 0;
     
     FILE *input_file = fopen(argv[1], "r");
