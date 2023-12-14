@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
         if(all_sec == 0){
             all_sec = 1;
             for(int a = 0; a < 5; a++){
-                if(buf[a] != com[0][1] || buf[6] != '\0'){
+                if(buf[a] != com[0][a] || buf[6] != '\0'){
                     all_sec = 0;
                     break;
                 }
