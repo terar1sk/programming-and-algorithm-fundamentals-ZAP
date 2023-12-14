@@ -13,17 +13,17 @@ int main(int argc, char *argv[]){
     char text[200];
     int tcon = 0;
     
-    FILE *inp_file = fopen(argv[1], "r");
-    if(inp_file == NULL){
+    FILE *input_file = fopen(argv[1], "r");
+    if(input_file == NULL){
         return 1;
     }    
     
-    char ch = fgetc(inp_file);
+    char ch = fgetc(input_file);
     while(ch != EOF){
         while(ch != ' ' && ch != EOF){
             buf[con] = ch;
             con++;
-            ch = fgetc(inp_file);
+            ch = fgetc(input_file);
         }
         buf[con] = ' ';
         con++;
@@ -60,18 +60,18 @@ int main(int argc, char *argv[]){
             }
         }
         con = 0;
-        ch = fgetc(inp_file);
+        ch = fgetc(input_file);
     }
-    fclose(inp_file);
+    fclose(input_file);
     
-    FILE *out_file = fopen(argv[2], "w");
-    if(out_file == NULL){
+    FILE *output_file = fopen(argv[2], "w");
+    if(output_file == NULL){
         return 1;
     }
     for(int a = 0; a < tcon-1; a++){
-        fputc(text[a], out_file);
+        fputc(text[a], output_file);
     }
-    fclose(out_file);
+    fclose(output_file);
     
     return 0;
 }
